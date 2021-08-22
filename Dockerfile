@@ -49,6 +49,10 @@ RUN wget http://katze.tfiu.de/projects/phyghtmap/phyghtmap_2.10.orig.tar.gz \
 #RUN cd /home/gis/srtm \
 # && ./srtm.sh
 
+RUN cd /usr/src/OpenTopoMap/mapnik/tools/ \
+ && cc -o saddledirection saddledirection.c -lm -lgdal \
+ && cc -Wall -o isolation isolation.c -lgdal -lm -O2
+
 COPY otm /otm
 
 #CMD ["/usr/bin/supervisord", "-n"]
