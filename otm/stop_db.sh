@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo -u postgres /etc/init.d/postgresql stop
+/etc/init.d/postgresql stop
