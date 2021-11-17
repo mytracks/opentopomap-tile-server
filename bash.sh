@@ -1,3 +1,4 @@
 #!/bin/sh
 
-podman run --name otm_bash --rm -ti -v ./data:/var/lib/otm -v ./db:/var/lib/postgresql/9.5/main mytracks/opentopomap-tile-server bash
+# -v ./data:/external-data -v ./db:/db 
+podman run --name otm_bash --rm -ti docker.io/mytracks/opentopomap-tile-server:20.04 bash

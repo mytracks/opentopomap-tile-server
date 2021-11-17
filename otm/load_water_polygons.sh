@@ -1,14 +1,18 @@
 #!/bin/bash
 
-if [ -f /var/lib/otm/water-polygons-import-complete ]; then
-    echo "Skipping water polgons import: data already imported"
-    exit 0
+cd /external-data
+if [ ! -d water-polygons-split-3857 ]; then
+    if [ ! -f water-polygons-split-3857.zip ]; then
+        wget https://osmdata.openstreetmap.de/download/water-polygons-split-3857.zip
+    fi
+    unzip water-polygons-split-3857.zip
+    rm water-polygons-split-3857.zip
 fi
 
-cd /var/lib/otm && mkdir -p mapnik/data
-wget https://osmdata.openstreetmap.de/download/simplified-water-polygons-split-3857.zip
-wget https://osmdata.openstreetmap.de/download/water-polygons-split-3857.zip
-unzip water-polygons-split-3857.zip
-unzip simplified-water-polygons-split-3857.zip
-
-touch /var/lib/otm/water-polygons-import-complete
+if [ ! -d simplified-water-polygons-split-3857 ]; then
+    if [ ! -f simplified-water-polygons-split-3857.zip ]; then
+        wget https://osmdata.openstreetmap.de/download/simplified-water-polygons-split-3857.zip
+    fi
+    unzip simplified-water-polygons-split-3857.zip
+    rm simplified-water-polygons-split-3857.zip
+fi
